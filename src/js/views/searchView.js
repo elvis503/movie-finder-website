@@ -1,13 +1,7 @@
 export const displayResults = (results) => {
-    alert("dsd")
-    window.addEventListener("load", function(){
-        alert("sds")
-        results.forEach(element => {
-            
-            renderMarkup(element);
-        });
-        window.removeEventListener("load");
-      })
+    results.forEach(element => {
+        renderMarkup(element);
+    });
 }
 
 const renderMarkup = (result) => {

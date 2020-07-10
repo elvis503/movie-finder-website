@@ -1,0 +1,126 @@
+*{
+    margin:0;
+    padding:0;
+}
+
+body{
+    background-color: black;
+}
+
+.material-icons{
+    color:red;
+}
+
+.home-title{
+    font-size: 2.5rem;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: whitesmoke;
+    margin:0.2rem;
+}
+
+.nav-bar{
+    display:flex;
+    background-color: rgb(116, 2, 2);
+    justify-content: space-around;
+    align-items: center;
+}
+
+.search-submit{
+    display: flex;
+    align-items: center;
+    width: 25rem;
+}
+
+.search-input{
+    width: 100%;
+    height: 25px;
+    border: 2px solid black;
+    font-size: 1.3rem;
+    outline: none;
+    padding-left: 0.5rem;
+}
+
+.search-btn{
+    margin-left: 0%;
+    background-color: none;
+    border: 1px solid lightgray;
+    height: 25px;
+}
+
+.results-container{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background-color: whitesmoke;
+    width: 60rem;
+    height: 100vh;
+    margin: 0 auto;
+}
+ 
+.result{
+    border-top: 1px solid lightgray;
+    border-bottom: 1px solid lightgray;
+    overflow-x: hidden;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.left-column{
+    float: left;
+}
+
+
+.right-column{
+    float:right;
+    padding-right: 50px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+
+.movie-title{
+    margin-top: 10px;
+    margin-left: 10rem;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#star{
+    margin-top: 3px;
+    color: rgb(203, 173, 6);
+    font-size: 30px;
+    display: inline-block;
+    vertical-align: -20%;
+}
+
+.movie-desc{
+    margin-top: 3px;
+    margin-left: 10rem;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 20px;
+    color: rgb(97, 97, 97);
+}
+
+.movie-poster{
+    width: 190px;
+    display: block;
+}
+
+.movie-rating{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    display: inline-block;
+    top:50%;
+    text-align: center;
+}
+
+.sign-btn{
+    background-color: transparent;
+    outline: none;
+    border: none;
+    font-size: 1.1rem;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: whitesmoke;
+}
+
+@media screen and (min-width: 480px){
+    
+}

@@ -4,25 +4,143 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">    
     <title>Movie Finder</title>
 </head>
 <body>
     <div class="title-container">
-        <h2 class="home-title">Movie Finder</h2>
-        <div class="title-line"></div>
+        <h2 class="home-title" id="title">Movie Finder</h2>
+        <div class="title-line" id="line"></div>
         <div class="home-desc">
             <p>Find all your favourite movies in one place! Enter below the movie you would like to search for: </p>
         </div>
-        <form class="search-submit" type="submit">
-            <a href="search.html"></a>
+        <form class="search-submit" id="form-home" type="submit"  autocomplete="off"> 
             <div class="search-box">
-                <input type="text" class="input-search" placeholder="e.g. Titanic">
+                <input autocapitalize="on" type="text" class="search-input" id="search-home" placeholder="e.g. Titanic">
             </div>
         </form>
     </div>
     <div class="img-container">
         <img src="./img/movie-theater-background.jpg">
     </div>
+
+    <!--SEARCH PAGE***********************************-->
+    <main class="results-page"> 
+        <nav class="nav-bar">
+            <div class="logo">
+                <h1 class="home-title">Movie Finder</h1>
+            </div>
+            <form class="search-submit" id="form-search-bar">
+                <input type="text" class="search-input" id="search-bar">
+                <button class="search-btn">
+                    <i class="material-icons" id="search-icon">search</i>
+                </button>
+                
+            </form>
+            <button class="log-in-btn">
+                <h1>
+                    <a href="#log-in-user" class="btn">Log In</a>
+                </h1>
+            </button>
+        </nav>
+        <section class="current-page-container">
+            <div class="results-container">
+                <!-- <article class="result">
+                    <h1 class="result-id">ttt21231</h1>
+                    <h2 class="result-name">Iron Man (2009)</h2>
+                    <p class="result-type">Movie</p>
+                    <img class="result-poster" src= "./img/poster.jpg">
+                </article> -->
+            </div>
+            <!-- TITLE DISPLAY*************************************** -->
+            <article class="title-display">
+                <!-- <div class="back-btn-container">
+                    <button class="close-results-btn">
+                        <i class="material-icons">close</i>
+                    </button>
+                </div>
+                    <h1 class="title-name">${details.Title} (${details.Year})</h1>
+                    <div class="title-details">
+                        <h2 class="title-type">${details.Type}</h2>
+                        <h2 class="title-director">Director: ${details.Director}</h2>
+                        <h2 class="title-genre">Genres: ${details.Genre}</h2>
+                        <h2 class="title-country">Country: ${details.Country}</h2>
+                    </div>
+                    <ul class="title-actors">Starring:
+                        <li class="actor">${details.Actors}</li>
+                    </ul>
+                    <h2 class="title-description">${details.Plot}</h2>
+    
+                    <img class="title-poster" src=${details.Poster}>
+                    <h2 class="title-rating">${details.Rated}</h2>
+                    <h2 class="title-runtime">Duration: ${details.Runtime}</h2>
+                    <ul class="title-critic-ratings">Critic Rating
+                        <span>
+                            <i class="material-icons">star</i>
+                        </span>
+                        <li class="rating">Metacritic: 8</li>
+                        <li class="rating">Rotten Tomatoes: 8.9</li>
+                        <li class="rating">IMDB: 9.3</li>
+                    </ul>-->
+            </article>
+            <div class="end-of-display"></div>
+        </section> 
+    </main>
+    <div class="log-in-overlay" id="log-in-user">
+        <div class="log-in-container">
+            <button class="close-overlay-btn" type="button">
+                <i class="material-icons">close</i>
+            </button>
+            <div class="forms-container">
+                <form class="log-in-form">
+                    <div class="log-in-header">Log In</div>
+                    <div class="modal-section" id="log-in-account">
+                        <h3 class="input-header">Username</h3>
+                        <input type="text" placeholder="Enter Username" id="username-input-login">
+                    
+                        <h3 class="input-header">Password</h3>
+                        <input type="password" placeholder="Enter Password" id="password-input-login">
+                    
+                        <label id="remember-me-label">
+                            <input id="remember-me-check" type="checkbox" checked="checked"> Remember me
+                        </label>
+                                
+                        <div class="clearfix">
+                            <button type="submit" class="confirm-btn" id="log-in-btn">Log In</button>
+                        </div>
+                    </div>
+                </form>
+    
+                <form class="register-form">
+                    <div class="log-in-header">Register Account</div>
+                    <div class="modal-section hide-section" id="register-account">
+                        <h3 class="input-header">Email</h3>
+                        <input type="text" placeholder="Enter Email" id="email-input-register">
+                    
+                        <h3 class="input-header">Username</h3>
+                        <input type="text" placeholder="Enter username" id="username-input-register">
+                    
+                        <h3 class="input-header">Password</h3>
+                        <input type="password" placeholder="Enter Password" id="password-input-register">
+                    
+                        <h3 class="input-header">Repeat Password</h3>
+                        <input type="password" placeholder="Confirm Password" id="confirm-input-register">
+                    
+                        <div class="clearfix">
+                            <button type="submit" class="confirm-btn" id="register-btn">Register New Account</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            
+            <div class="user-container">
+                <div class="log-in-header" id="user-header">Logged In As</div>
+                <button class="user-btns" id="view-favorites-btn">View Favorites</button>
+                <button class="user-btns" id="log-out-btn">Log Out</button>
+                <div class="end-of-display"></div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
+

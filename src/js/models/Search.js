@@ -12,15 +12,21 @@ export default class Search{
             data:{
                 title: this.query,
             }
-        };
-    
-        await axios(options)
-        
-        .then(response => {
+        }
+
+        try{
+            const response = await axios(options);
+            
+            if(!response.data){
+                throw new Error("No titles found. Please try a new search term.");
+            }
+
             this.results = response.data;
-        })
-        .catch(err => console.log(err))
-    };
+            
+        }catch(error){
+            alert(error.message)
+        }
+    }
 }
 
 

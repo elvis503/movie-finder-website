@@ -2,7 +2,8 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
-    entry: "./src/js/index.js",
+    entry: {index: "./src/js/index.js",
+},
     output: {
         path: path.resolve(__dirname, "dist"),
         filename: "js/bundle.js"
@@ -10,15 +11,13 @@ module.exports = {
     devServer:{
         contentBase: "./dist"
     },
+
     plugins:[
         new HtmlWebpackPlugin({
             filename: "index.html",
-            template: "./src/index.html"
-        }),
-
-        new HtmlWebpackPlugin({
-            filename: "results.html",
-            template: "./src/results.html"
+            template: "./src/index.html",
+            inject: true, 
+            chunks:['index']
         }),
     ]
 };

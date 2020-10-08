@@ -45,6 +45,10 @@ export const displayTitle = (details) => {
     titleContainer.insertAdjacentHTML("afterbegin", markup)
 }
 
+const checkFavorite = () => {
+    
+}
+
 export const titlePageAnimation = () => {    
     titleContainer.classList.remove("title-animation-right");
     titleContainer.classList.add("title-animation-left");
@@ -53,3 +57,4 @@ export const titlePageAnimation = () => {
         titleContainer.classList.add("title-animation-right");
     })
 }
+

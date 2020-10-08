@@ -12,7 +12,7 @@ import * as overlayView from "./views/overlayView"
 const searchForm = document.querySelectorAll(".search-submit");
 const loginBtn = document.querySelector(".log-in-btn");
 const logoutBtn = document.querySelector("#log-out-btn");
-const favoritesBtn = document.querySelector("#view-favorites-btn")
+const showFavoritesBtn = document.querySelector("#view-favorites-btn")
 
 let state = {};
 
@@ -46,9 +46,9 @@ logoutBtn.addEventListener("click", () => {
     //reload page after
 })
 
-favoritesBtn.addEventListener("click", () => {
+showFavoritesBtn.addEventListener("click", () => {
     overlayView.toggleOverlay();
-    controlFavorites();
+    showFavorites();
 })
 
 //******************SEARCH CONTROLLER*********************************/
@@ -80,10 +80,10 @@ const controlResult = async (id) => {
         await state.result.getTitle()
         
         if(state.result.titleDetails) {
-            console.log(state.result.titleDetails)
-
             resultView.displayTitle(state.result.titleDetails)
             resultView.titlePageAnimation();
+
+            controlFavorite();
 
         }else{
             //ERROR API ALERT
@@ -92,6 +92,23 @@ const controlResult = async (id) => {
     } catch (error) {
         alert({error: error.message});
     }
+}
+
+const controlFavorite = async () => {
+    const favoriteBtn = document.querySelector(".favorite-btn");
+
+    // if(){
+        //if movie is liked by user, make button remove favorite
+    // }else{
+        //if movie is not liked by user, make button remove favorite
+    // }
+
+    favoriteBtn.addEventListener("click", () => {
+        state.newFavorite = new Favorite(state.result.query);
+        state.newFavorite.addFavorite(state.login.currentUser.token);
+        
+        favoriteBtn.querySelector(".material-icons").innerHTML = "favorite";
+    })
 }
 
 const controlLogin = async (loginInput) => {
@@ -123,10 +140,6 @@ const controlRegister = async (registerInput) => {
     state.newUser = await register.registerNewUser();
 
     //After register, login user 
-
-}
-
-const controlFavorites = async () => {
 
 }
 

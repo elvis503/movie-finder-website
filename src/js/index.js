@@ -80,6 +80,7 @@ const controlResult = async (id) => {
         await state.result.getTitle()
         
         if(state.result.titleDetails) {
+            console.log(state.result.titleDetails)
             resultView.displayTitle(state.result.titleDetails)
             resultView.titlePageAnimation();
 
@@ -94,21 +95,31 @@ const controlResult = async (id) => {
     }
 }
 
-const controlFavorite = async () => {
-    const favoriteBtn = document.querySelector(".favorite-btn");
+const controlFavorite = () => {
+    if(!state.login){
+        resultView.toggleFavorite();
+    }else{
+        if(state.login.currentUser.user.favourites.includes(state.result.titleDetails.imdbID)){
+            resultView.toggleFavorite("favorite");
+        }else{
+            resultView.toggleFavorite("notFavorite");
+        }
 
-    // if(){
-        //if movie is liked by user, make button remove favorite
-    // }else{
-        //if movie is not liked by user, make button remove favorite
-    // }
+        document.querySelector(".favorite-btn").addEventListener("click", checkFavoriteQuery);
+    }
+}
 
-    favoriteBtn.addEventListener("click", () => {
-        state.newFavorite = new Favorite(state.result.query);
-        state.newFavorite.addFavorite(state.login.currentUser.token);
-        
-        favoriteBtn.querySelector(".material-icons").innerHTML = "favorite";
-    })
+const checkFavoriteQuery = async () => {
+    state.login.currentUser.user.favourites;
+    state.favorite = new Favorite(state.result.titleDetails.imdbID);
+
+    if(state.login.currentUser.user.favourites.includes(state.result.titleDetails.imdbID)){
+        state.login.currentUser.user.favourites = await state.favorite.deleteFavorite(state.login.currentUser.token);
+        resultView.toggleFavorite("notFavorite");
+    }else{
+        state.login.currentUser.user.favourites = await state.favorite.addFavorite(state.login.currentUser.token);
+        resultView.toggleFavorite("favorite");
+    }
 }
 
 const controlLogin = async (loginInput) => {
@@ -148,7 +159,7 @@ const controlLogout = async () => {
     const status = await logout.logoutUser(state.login.currentUser.token);
 
     if(status === 200){
-        state.login = null;
+        state = null;
         loginBtn.textContent = "Log In"
     }else{
         alert("There has been an error with the server, please try again.")

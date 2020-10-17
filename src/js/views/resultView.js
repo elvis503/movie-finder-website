@@ -45,8 +45,16 @@ export const displayTitle = (details) => {
     titleContainer.insertAdjacentHTML("afterbegin", markup)
 }
 
-const checkFavorite = () => {
-    
+export const toggleFavorite = (toggle) => {
+    const favoriteBtn = document.querySelector(".favorite-btn");
+
+    if(toggle === "notFavorite"){
+        favoriteBtn.querySelector(".material-icons").innerHTML = "favorite_border";
+    }else if(toggle === "favorite"){
+        favoriteBtn.querySelector(".material-icons").innerHTML = "favorite";
+    }else{
+        favoriteBtn.style.visibility = "hidden";
+    }
 }
 
 export const titlePageAnimation = () => {    

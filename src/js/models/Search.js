@@ -27,6 +27,29 @@ export default class Search{
             alert(error.message)
         }
     }
+
+    async searchFavorites(){
+        const options = {
+            url: "https://video-club-api.herokuapp.com/api/services/searchMovieById",
+            method: "POST",
+            data:{
+                idmbID: this.query,
+            }
+        }
+
+        try{
+            const response = await axios(options);
+            
+            if(!response.data){
+                throw new Error("No titles found. Please try a new search term.");
+            }
+
+            this.results = response.data;
+            
+        }catch(error){
+            alert(error.message)
+        }
+    }
 }
 
 

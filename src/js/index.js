@@ -47,8 +47,9 @@ logoutBtn.addEventListener("click", () => {
 })
 
 showFavoritesBtn.addEventListener("click", () => {
+    viewFavorites();
     overlayView.toggleOverlay();
-    showFavorites();
+
 })
 
 //******************SEARCH CONTROLLER*********************************/
@@ -109,8 +110,31 @@ const controlFavorite = () => {
     }
 }
 
+const viewFavorites = async () => {
+    console.log(state.login.currentUser.user.favourites)
+    for(let i = 0; i < state.login.currentUser.user.favourites.length; i++){
+        state.search = new Search(state.login.currentUser.user.favourites[i]);
+        
+        try {
+            await state.search.searchFavorite();
+            console.log(state.search.results)                
+        } catch(error) {
+            alert({error: error.message});
+        }
+    }
+
+    // if(state.search.results){
+    //     searchView.displayResults(state.search.results);
+
+    //     searchView.getTitleClick(controlResult);
+    //     searchView.searchPageAnimation();
+    // }else{
+    //     //ERROR API ALERT
+    // }
+
+}
+
 const checkFavoriteQuery = async () => {
-    state.login.currentUser.user.favourites;
     state.favorite = new Favorite(state.result.titleDetails.imdbID);
 
     if(state.login.currentUser.user.favourites.includes(state.result.titleDetails.imdbID)){

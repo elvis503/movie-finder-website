@@ -28,7 +28,7 @@ export default class Search{
         }
     }
 
-    async searchFavorites(){
+    async searchFavorite(){
         const options = {
             url: "https://video-club-api.herokuapp.com/api/services/searchMovieById",
             method: "POST",

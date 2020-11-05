@@ -16,7 +16,7 @@ export default class Search{
 
         try{
             const response = await axios(options);
-            
+            console.log(response)
             if(!response.data){
                 throw new Error("No titles found. Please try a new search term.");
             }
@@ -33,7 +33,7 @@ export default class Search{
             url: "https://video-club-api.herokuapp.com/api/services/searchMovieById",
             method: "POST",
             data:{
-                idmbID: this.query,
+                imdbID: this.query,
             }
         }
 
@@ -44,7 +44,7 @@ export default class Search{
                 throw new Error("No titles found. Please try a new search term.");
             }
 
-            this.results = response.data;
+            return response.data;
             
         }catch(error){
             alert(error.message)

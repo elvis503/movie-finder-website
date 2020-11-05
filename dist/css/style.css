@@ -84,8 +84,6 @@ input:focus{
     background-color: white;
 }
 
-
-
 /* *******************RESULTS PAGE************************** */
 
 .results-page{
@@ -94,7 +92,6 @@ input:focus{
     /* display: none; */
     position: fixed; /* eliminar */
 }
-
 
 @keyframes results-page-up{
     0%   {top: 100%}
@@ -111,6 +108,7 @@ input:focus{
     display: flex;
     flex-direction: column;
     top: 0%;
+    min-height: 100%;
     animation: results-page-up;
     animation-duration: 0.7s;
     position: absolute;
@@ -252,11 +250,6 @@ button:focus{
     cursor: pointer;
 }
 
-
-@media screen and (min-width: 480px){
-    
-}
-
 /********************** TITLE DISPLAY PAGE********************************************* */
 
 .title-display{
@@ -271,7 +264,6 @@ button:focus{
     border: 2px solid darkred;
     border-radius: 5px;
 }
-
 
 @keyframes title-page-left{
     0%   {left: 100%}

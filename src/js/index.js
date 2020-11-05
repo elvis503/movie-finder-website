@@ -49,7 +49,6 @@ logoutBtn.addEventListener("click", () => {
 showFavoritesBtn.addEventListener("click", () => {
     viewFavorites();
     overlayView.toggleOverlay();
-
 })
 
 //******************SEARCH CONTROLLER*********************************/
@@ -61,7 +60,6 @@ const controlSearch = async (input) => {
         
         if(state.search.results){
             searchView.displayResults(state.search.results);
-
             searchView.getTitleClick(controlResult);
             searchView.searchPageAnimation();
         }else{
@@ -76,7 +74,6 @@ const controlSearch = async (input) => {
 
 const controlResult = async (id) => {
     state.result  = new Result(id);
-
     try {
         await state.result.getTitle()
         
@@ -105,32 +102,26 @@ const controlFavorite = () => {
         }else{
             resultView.toggleFavorite("notFavorite");
         }
-
         document.querySelector(".favorite-btn").addEventListener("click", checkFavoriteQuery);
     }
 }
 
 const viewFavorites = async () => {
-    console.log(state.login.currentUser.user.favourites)
-    for(let i = 0; i < state.login.currentUser.user.favourites.length; i++){
-        state.search = new Search(state.login.currentUser.user.favourites[i]);
-        
-        try {
-            await state.search.searchFavorite();
-            console.log(state.search.results)                
-        } catch(error) {
-            alert({error: error.message});
-        }
-    }
+    let favoritesArray = new Array();
 
-    // if(state.search.results){
-    //     searchView.displayResults(state.search.results);
+    state.login.currentUser.user.favourites.map((title) => {
+        state.search = new Search(title);
+        let promise = state.search.searchFavorite();
+        favoritesArray.push(promise)
+    });
 
-    //     searchView.getTitleClick(controlResult);
-    //     searchView.searchPageAnimation();
-    // }else{
-    //     //ERROR API ALERT
-    // }
+    Promise.all(favoritesArray).then((results) => {
+        searchView.displayResults(results)
+        searchView.getTitleClick(controlResult);
+        searchView.searchPageAnimation();
+    }).catch((error => {
+        alert(error)
+    }))
 
 }
 
@@ -173,8 +164,6 @@ const controlRegister = async (registerInput) => {
 
     const register = new Register(email, username, password);
     state.newUser = await register.registerNewUser();
-
-    //After register, login user 
 
 }
 

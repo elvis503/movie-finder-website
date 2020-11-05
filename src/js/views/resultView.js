@@ -45,12 +45,12 @@ export const displayTitle = (details) => {
     titleContainer.insertAdjacentHTML("afterbegin", markup)
 }
 
-export const toggleFavorite = (toggle) => {
+export const toggleFavorite = (isFavorite) => {
     const favoriteBtn = document.querySelector(".favorite-btn");
 
-    if(toggle === "notFavorite"){
+    if(isFavorite === "notFavorite"){
         favoriteBtn.querySelector(".material-icons").innerHTML = "favorite_border";
-    }else if(toggle === "favorite"){
+    }else if(isFavorite === "favorite"){
         favoriteBtn.querySelector(".material-icons").innerHTML = "favorite";
     }else{
         favoriteBtn.style.visibility = "hidden";

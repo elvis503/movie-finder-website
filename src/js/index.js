@@ -43,7 +43,8 @@ loginBtn.addEventListener("click", () => {
 logoutBtn.addEventListener("click", () => {
     overlayView.toggleOverlay();
     controlLogout();
-    //reload page after
+    location.reload(); // reload webpage
+    return false;
 })
 
 showFavoritesBtn.addEventListener("click", () => {
@@ -73,7 +74,7 @@ const controlSearch = async (input) => {
 
 
 const controlResult = async (id) => {
-    state.result  = new Result(id);
+    state.result = new Result(id);
     try {
         await state.result.getTitle()
         
@@ -150,6 +151,7 @@ const controlLogin = async (loginInput) => {
     if(state.login.currentUser){
         loginBtn.innerText = username;
         overlayView.toggleOverlay();
+        //resetUserFields();
     }
 }
 
@@ -165,6 +167,17 @@ const controlRegister = async (registerInput) => {
     const register = new Register(email, username, password);
     state.newUser = await register.registerNewUser();
 
+    if(state.newUser){
+        const loginData = {
+            username: username,
+            password: password
+        }
+
+        alert("User Created Succesfully");
+        controlLogin(loginData);
+    }else{
+        alert("There has been an error contacting the server, please try again later")
+    }
 }
 
 const controlLogout = async () => {
@@ -172,7 +185,7 @@ const controlLogout = async () => {
     const status = await logout.logoutUser(state.login.currentUser.token);
 
     if(status === 200){
-        state = null;
+        state.login = null;
         loginBtn.textContent = "Log In"
     }else{
         alert("There has been an error with the server, please try again.")

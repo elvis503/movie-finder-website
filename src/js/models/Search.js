@@ -16,13 +16,12 @@ export default class Search{
 
         try{
             const response = await axios(options);
-            console.log(response)
+
             if(!response.data){
                 throw new Error("No titles found. Please try a new search term.");
             }
 
             this.results = response.data;
-            
         }catch(error){
             alert(error.message)
         }
@@ -45,7 +44,6 @@ export default class Search{
             }
 
             return response.data;
-            
         }catch(error){
             alert(error.message)
         }

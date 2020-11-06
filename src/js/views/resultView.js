@@ -3,6 +3,7 @@ const titleContainer = document.querySelector(".title-display");
 export const displayTitle = (details) => {
     //Erase previous result
     titleContainer.innerHTML = "";
+    const ratingsMarkup = getCriticRatingMarkup(details.Ratings);
 
     const markup = `
             <div class="btns-container">
@@ -35,14 +36,24 @@ export const displayTitle = (details) => {
                     <span>
                         <i class="material-icons">star</i>
                     </span>
-                    <li class="rating">Metacritic: 8</li>
-                    <li class="rating">Rotten Tomatoes: 8.9</li>
-                    <li class="rating">IMDB: 9.3</li>
+                    ${ratingsMarkup}
                 </ul>
             </div>
     `;
 
     titleContainer.insertAdjacentHTML("afterbegin", markup)
+}
+
+const getCriticRatingMarkup = (data) => {
+    let markup = "";
+    
+    for(let i = 0; i < data.length; i++){
+        const currentRating = `<li class="rating">${data[i].Source}: ${data[i].Value}</li>`;
+        markup = markup.concat(currentRating);
+    }
+
+    console.log(markup)
+    return markup;
 }
 
 export const toggleFavorite = (isFavorite) => {

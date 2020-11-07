@@ -19,7 +19,6 @@ export default class Favorite{
             const response = await axios(options);
             
             if(response.status === 200){
-                console.log(response.data)
                 return response.data.updated.favourites
             }
             
@@ -42,7 +41,6 @@ export default class Favorite{
             const response = await axios(options);
             
             if(response.status === 200){
-                console.log(response.data)
                 return(response.data.updated.favourites)
             }
             

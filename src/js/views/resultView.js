@@ -52,7 +52,6 @@ const getCriticRatingMarkup = (data) => {
         markup = markup.concat(currentRating);
     }
 
-    console.log(markup)
     return markup;
 }
 

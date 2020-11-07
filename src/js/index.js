@@ -79,7 +79,6 @@ const controlResult = async (id) => {
         await state.result.getTitle()
         
         if(state.result.titleDetails) {
-            console.log(state.result.titleDetails)
             resultView.displayTitle(state.result.titleDetails)
             resultView.titlePageAnimation();
 
